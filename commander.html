@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commander — Passerelle Digitale</title>
+<meta name="description" content="Démarrez votre accompagnement emploi avec Passerelle Digitale. Remplissez le formulaire en 5 minutes.">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/commande.css">
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="index.html" class="nav-logo">Passerelle<span> Digitale</span></a>
+  <a href="index.html" class="nav-back">← Retour à l'accueil</a>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- ─── LEFT PANEL ─── -->
+  <div class="info-panel">
+    <p class="info-eyebrow">Nouvelle demande</p>
+    <h1 class="info-title">Démarrons<br>votre <em>dossier.</em></h1>
+    <p class="info-sub">Remplissez ce formulaire en 5 minutes. Nous revenons vers vous sous <strong>24h</strong> pour confirmer votre dossier et démarrer la réécriture de votre CV.</p>
+
+    <div class="forfait-mini-grid" id="forfait-selector">
+      <div class="forfait-mini selected" data-forfait="CV Express — $85" onclick="selectForfait(this)">
+        <div class="forfait-mini-check">✓</div>
+        <div class="forfait-mini-name">CV Express</div>
+        <div class="forfait-mini-price"><strong>$85</strong> · 48h</div>
+      </div>
+      <div class="forfait-mini" data-forfait="Starter — $175" onclick="selectForfait(this)">
+        <div class="forfait-mini-check">✓</div>
+        <div class="forfait-mini-name">Starter</div>
+        <div class="forfait-mini-price"><strong>$175</strong> · 1 sem.</div>
+      </div>
+      <div class="forfait-mini" data-forfait="Premium — $320" onclick="selectForfait(this)">
+        <div class="forfait-mini-check">✓</div>
+        <div class="forfait-mini-name">Premium ⭐</div>
+        <div class="forfait-mini-price"><strong>$320</strong> · 3 sem.</div>
+      </div>
+      <div class="forfait-mini" data-forfait="Full — $550" onclick="selectForfait(this)">
+        <div class="forfait-mini-check">✓</div>
+        <div class="forfait-mini-name">Full</div>
+        <div class="forfait-mini-price"><strong>$550</strong> · 2 mois</div>
+      </div>
+    </div>
+
+    <ul class="trust-list">
+      <li>
+        <div class="trust-icon">🔒</div>
+        <span>Paiement en 2 fois · 50% à la commande, 50% à la livraison du CV finalisé</span>
+      </li>
+      <li>
+        <div class="trust-icon">✏️</div>
+        <span>Une révision incluse dans tous les forfaits. Vous validez avant qu'on postule.</span>
+      </li>
+      <li>
+        <div class="trust-icon">📊</div>
+        <span>Tableau de suivi partagé. Vous savez en temps réel où sont vos candidatures.</span>
+      </li>
+      <li>
+        <div class="trust-icon">💬</div>
+        <span>Contact direct par WhatsApp. On répond sous 4h en journée.</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ─── RIGHT PANEL: FORM ─── -->
+  <div class="form-panel">
+    <div id="form-container">
+      <h2 class="form-title">Votre demande</h2>
+      <p class="form-subtitle">Étape <span id="current-step-label">1</span> sur 3 · Tous les champs marqués <span class="lime">*</span> sont obligatoires</p>
+
+      <!-- Progress -->
+      <div class="form-progress">
+        <div class="progress-step active" id="prog-1"></div>
+        <div class="progress-step" id="prog-2"></div>
+        <div class="progress-step" id="prog-3"></div>
+      </div>
+
+      <!-- STEP 1: Profil -->
+      <div class="form-step active" id="step-1">
+        <p class="step-heading">01 — Votre profil</p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Prénom <span class="req">*</span></label>
+            <input type="text" class="form-input" id="f-prenom" placeholder="Ex: Amara">
+            <div class="form-error" id="err-prenom">Champ obligatoire</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nom <span class="req">*</span></label>
+            <input type="text" class="form-input" id="f-nom" placeholder="Ex: Diallo">
+            <div class="form-error" id="err-nom">Champ obligatoire</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Adresse email <span class="req">*</span></label>
+          <input type="email" class="form-input" id="f-email" placeholder="votre@email.com">
+          <div class="form-error" id="err-email">Email invalide</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Numéro WhatsApp <span class="req">*</span></label>
+          <input type="tel" class="form-input" id="f-whatsapp" placeholder="+1 514 000 0000">
+          <div class="form-error" id="err-whatsapp">Champ obligatoire</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Pays d'origine <span class="req">*</span></label>
+            <input type="text" class="form-input" id="f-pays" placeholder="Ex: Sénégal">
+            <div class="form-error" id="err-pays">Champ obligatoire</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Ville au Canada</label>
+            <input type="text" class="form-input" id="f-ville" placeholder="Ex: Montréal">
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <div class="step-counter">Étape 1 / 3</div>
+          <button class="btn-next" onclick="goStep(2)">Continuer →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Emploi -->
+      <div class="form-step" id="step-2">
+        <p class="step-heading">02 — Votre recherche d'emploi</p>
+
+        <div class="form-group">
+          <label class="form-label">Secteur(s) recherché(s) <span class="req">*</span></label>
+          <div class="chips-grid" id="secteur-chips">
+            <div class="chip" onclick="toggleChip(this)">🍽️ Restauration</div>
+            <div class="chip" onclick="toggleChip(this)">🛍️ Commerce & Retail</div>
+            <div class="chip" onclick="toggleChip(this)">💻 Informatique</div>
+            <div class="chip" onclick="toggleChip(this)">🏥 Santé & Services</div>
+            <div class="chip" onclick="toggleChip(this)">📦 Logistique</div>
+            <div class="chip" onclick="toggleChip(this)">📞 Service client</div>
+            <div class="chip" onclick="toggleChip(this)">🏗️ Construction</div>
+            <div class="chip" onclick="toggleChip(this)">🧹 Entretien</div>
+            <div class="chip" onclick="toggleChip(this)">📚 Tutorat</div>
+            <div class="chip" onclick="toggleChip(this)">🚗 Transport</div>
+          </div>
+          <div class="form-error" id="err-secteur">Sélectionnez au moins un secteur</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Disponibilité horaire <span class="req">*</span></label>
+          <select class="form-select" id="f-dispo">
+            <option value="">— Sélectionner —</option>
+            <option>Temps plein (35–40h/sem)</option>
+            <option>Temps partiel (max 20h/sem — permis étudiant)</option>
+            <option>Flexible (temps plein ou partiel)</option>
+            <option>Week-ends uniquement</option>
+            <option>Soirs et week-ends</option>
+          </select>
+          <div class="form-error" id="err-dispo">Sélectionnez une disponibilité</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Langues parlées</label>
+          <div class="chips-grid">
+            <div class="chip selected" onclick="toggleChip(this)">🇫🇷 Français</div>
+            <div class="chip" onclick="toggleChip(this)">🇬🇧 Anglais</div>
+            <div class="chip" onclick="toggleChip(this)">🇦🇷 Espagnol</div>
+            <div class="chip" onclick="toggleChip(this)">🇵🇹 Portugais</div>
+            <div class="chip" onclick="toggleChip(this)">🇸🇦 Arabe</div>
+            <div class="chip" onclick="toggleChip(this)">Autre</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Avez-vous déjà travaillé au Canada ?</label>
+          <select class="form-select" id="f-experience-ca">
+            <option value="">— Sélectionner —</option>
+            <option>Non, c'est ma première recherche</option>
+            <option>Oui, quelques mois d'expérience</option>
+            <option>Oui, plus d'un an d'expérience</option>
+          </select>
+        </div>
+
+        <div class="form-nav">
+          <button class="btn-back" onclick="goStep(1)">← Retour</button>
+          <button class="btn-next" onclick="goStep(3)">Continuer →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: CV & Message -->
+      <div class="form-step" id="step-3">
+        <p class="step-heading">03 — Votre CV & message</p>
+
+        <div class="form-group">
+          <label class="form-label">Votre CV actuel (PDF ou Word)</label>
+          <label class="file-upload" id="file-upload-zone">
+            <input type="file" id="f-cv" accept=".pdf,.doc,.docx" onchange="handleFile(this)">
+            <div class="file-upload-icon">📎</div>
+            <div class="file-upload-label">
+              <strong>Cliquez pour uploader</strong> ou glissez votre CV<br>
+              <span class="file-size-note">PDF, DOC, DOCX · Max 5MB</span>
+            </div>
+            <div class="file-upload-name" id="file-name">—</div>
+          </label>
+          <p class="file-hint">Pas de CV ? Pas de problème — on peut en créer un avec vous.</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Forfait choisi <span class="req">*</span></label>
+          <select class="form-select" id="f-forfait">
+            <option value="CV Express — $85">CV Express — $85</option>
+            <option value="Starter — $175">Starter — $175</option>
+            <option value="Premium — $320">Premium — $320 ⭐ Populaire</option>
+            <option value="Full — $550">Full Accompagnement — $550</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Message complémentaire</label>
+          <textarea class="form-textarea" id="f-message" placeholder="Parlez-nous de votre situation : depuis combien de temps êtes-vous au Canada, avez-vous des contraintes particulières, un type de poste précis en tête..."></textarea>
+        </div>
+
+        <!-- Honeypot anti-spam -->
+        <input type="text" id="f-honey" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="form-group">
+          <label class="consent-label">
+            <input type="checkbox" id="f-consent">
+            <span class="consent-text">
+              J'accepte que Passerelle Digitale utilise mes informations pour traiter ma demande et m'envoyer un suivi. Conformément à la <strong>Loi 25 (QC)</strong>, vos données ne sont jamais revendues.
+            </span>
+          </label>
+          <div class="form-error" id="err-consent">Veuillez accepter les conditions</div>
+        </div>
+
+        <div class="form-nav">
+          <button class="btn-back" onclick="goStep(2)">← Retour</button>
+          <button class="btn-next" onclick="submitForm()">Envoyer ma demande ✓</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-state" id="success-state">
+      <div class="success-icon">✓</div>
+      <h2 class="success-title">Demande reçue !</h2>
+      <p class="success-sub">Merci <strong id="success-name"></strong>. Nous avons bien reçu votre demande et reviendrons vers vous par email et WhatsApp sous <strong>24h</strong>.</p>
+      <div class="success-next">
+        <div class="success-next-label">Prochaines étapes</div>
+        <ul>
+          <li><span>→</span> Confirmation par email dans les minutes qui suivent</li>
+          <li><span>→</span> Audit de votre CV sous 24h</li>
+          <li><span>→</span> Vous recevez votre CV réécrit en 48h</li>
+          <li><span>→</span> On commence les candidatures dès validation</li>
+        </ul>
+      </div>
+      <a href="index.html" class="return-link">← Retour à l'accueil</a>
+    </div>
+  </div>
+
+</div><!-- end page-wrap -->
+
+<script>
+  let currentStep = 1;
+  let selectedForfait = 'CV Express — $85';
+  let droppedFile = null;
+
+  /* ─── FORFAIT SELECTOR (left panel syncs with form) ─── */
+  function selectForfait(el) {
+    document.querySelectorAll('.forfait-mini').forEach(f => f.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedForfait = el.dataset.forfait;
+    document.getElementById('f-forfait').value = selectedForfait;
+  }
+
+  /* ─── CHIP TOGGLE ─── */
+  function toggleChip(el) { el.classList.toggle('selected'); }
+
+  /* ─── FILE UPLOAD ─── */
+  function handleFile(input) {
+    const zone = document.getElementById('file-upload-zone');
+    const nameEl = document.getElementById('file-name');
+    if (input.files && input.files[0]) {
+      droppedFile = null;
+      zone.classList.add('has-file');
+      nameEl.textContent = '✓ ' + input.files[0].name;
+    }
+  }
+
+  // Drag & drop — fixed: input.files is read-only, track dropped file separately
+  const zone = document.getElementById('file-upload-zone');
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.style.borderColor = 'var(--lime)'; });
+  zone.addEventListener('dragleave', () => { zone.style.borderColor = ''; });
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.style.borderColor = '';
+    const file = e.dataTransfer.files[0];
+    if (file) {
+      droppedFile = file;
+      zone.classList.add('has-file');
+      document.getElementById('file-name').textContent = '✓ ' + file.name;
+    }
+  });
+
+  /* ─── STEP NAVIGATION ─── */
+  function goStep(n) {
+    if (n > currentStep && !validateStep(currentStep)) return;
+
+    document.getElementById('step-' + currentStep).classList.remove('active');
+    document.getElementById('prog-' + currentStep).classList.remove('active');
+    document.getElementById('prog-' + currentStep).classList.add('done');
+
+    currentStep = n;
+
+    document.getElementById('step-' + currentStep).classList.add('active');
+    document.getElementById('prog-' + currentStep).classList.add('active');
+    document.getElementById('current-step-label').textContent = currentStep;
+
+    document.getElementById('f-forfait').value = selectedForfait;
+  }
+
+  /* ─── VALIDATION ─── */
+  function validateStep(step) {
+    let ok = true;
+
+    function showErr(id, inputId) {
+      document.getElementById(id).style.display = 'block';
+      if (inputId) document.getElementById(inputId).classList.add('error');
+      ok = false;
+    }
+    function clearErr(id, inputId) {
+      document.getElementById(id).style.display = 'none';
+      if (inputId) document.getElementById(inputId).classList.remove('error');
+    }
+
+    if (step === 1) {
+      const prenom = document.getElementById('f-prenom').value.trim();
+      const nom    = document.getElementById('f-nom').value.trim();
+      const email  = document.getElementById('f-email').value.trim();
+      const wp     = document.getElementById('f-whatsapp').value.trim();
+      const pays   = document.getElementById('f-pays').value.trim();
+
+      prenom ? clearErr('err-prenom','f-prenom') : showErr('err-prenom','f-prenom');
+      nom    ? clearErr('err-nom','f-nom')       : showErr('err-nom','f-nom');
+      /\S+@\S+\.\S+/.test(email) ? clearErr('err-email','f-email') : showErr('err-email','f-email');
+      wp     ? clearErr('err-whatsapp','f-whatsapp') : showErr('err-whatsapp','f-whatsapp');
+      pays   ? clearErr('err-pays','f-pays')     : showErr('err-pays','f-pays');
+    }
+
+    if (step === 2) {
+      const chips = document.querySelectorAll('#secteur-chips .chip.selected');
+      const dispo = document.getElementById('f-dispo').value;
+      chips.length ? clearErr('err-secteur') : showErr('err-secteur');
+      dispo        ? clearErr('err-dispo','f-dispo') : showErr('err-dispo','f-dispo');
+    }
+
+    return ok;
+  }
+
+  /* ─── SUBMIT ─── */
+  function submitForm() {
+    if (document.getElementById('f-honey').value) return;
+
+    if (!document.getElementById('f-consent').checked) {
+      document.getElementById('err-consent').style.display = 'block';
+      return;
+    }
+    document.getElementById('err-consent').style.display = 'none';
+
+    const prenom = document.getElementById('f-prenom').value.trim();
+    const data = {
+      prenom,
+      nom:      document.getElementById('f-nom').value.trim(),
+      email:    document.getElementById('f-email').value.trim(),
+      whatsapp: document.getElementById('f-whatsapp').value.trim(),
+      pays:     document.getElementById('f-pays').value.trim(),
+      ville:    document.getElementById('f-ville').value.trim(),
+      secteurs: [...document.querySelectorAll('#secteur-chips .chip.selected')].map(c => c.textContent).join(', '),
+      dispo:    document.getElementById('f-dispo').value,
+      forfait:  selectedForfait,
+      message:  document.getElementById('f-message').value.trim(),
+    };
+
+    console.log('Formulaire soumis:', data);
+    // → Ici vous brancherez Formspree ou Tally
+
+    document.getElementById('form-container').style.display = 'none';
+    document.getElementById('success-name').textContent = prenom;
+    document.getElementById('success-state').classList.add('show');
+  }
+</script>
+</body>
+</html>
